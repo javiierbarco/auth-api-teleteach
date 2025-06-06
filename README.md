@@ -9,30 +9,30 @@ Forma parte del desarrollo del curso **Ingeniería de Software 2 – 2025-1** ba
 ## 🚀 Tecnologías utilizadas
 
 - Python 3.11+
-- [FastAPI](https://fastapi.tiangolo.com/)
-- [Uvicorn](https://www.uvicorn.org/)
-- JWT (JSON Web Tokens) para autenticación y autorización
-- Almacenamiento simulado con estructura JSON en memoria (MVP)
+- [Flask](https://flask.palletsprojects.com/)
+- [Flask-CORS](https://flask-cors.readthedocs.io/)
+- [PyMongo](https://pymongo.readthedocs.io/)
+- Almacenamiento persistente con MongoDB
 - Manejo de variables de entorno con `python-dotenv`
+- Seguridad con `werkzeug.security` para contraseñas
 
 ---
 
 ## ⚙️ Instalación y ejecución local
 
-""ash""
 # Clona el repositorio
 git clone https://github.com/javiierbarco/auth-api-teleteach.git
 cd auth-api-teleteach
 
 # Crea un entorno virtual
 python -m venv venv
-source venv/bin/activate  # En Windows: .\venv\Scripts\activate
+.\venv\Scripts\activate  # En Windows PowerShell
 
 # Instala dependencias
 pip install -r requirements.txt
 
 # Ejecuta el servidor
-uvicorn app.main:app --reload --port 8000
+python app.py
 
 📋 Endpoints principales 
 
@@ -45,6 +45,16 @@ uvicorn app.main:app --reload --port 8000
 | POST   | `/api/auth/reset-password` | Reestablecer contraseña con token enviado por correo (simulado) |
 | GET    | `/api/auth/me`             | Verifica y retorna los datos del usuario autenticado (token)    |
 
+
+# Validaciones y seguridad
+
+Contraseñas seguras: hasheadas usando werkzeug.security.
+
+Validación de campos: full_name, email y password son obligatorios.
+
+Respuestas claras: errores gestionados con mensajes específicos.
+
+Variables de entorno: conexión a MongoDB a través de .env.
 
 📄 Documentación Swagger generada automáticamente: http://localhost:8000/docs
 
