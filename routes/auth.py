@@ -60,3 +60,7 @@ def login():
             "email": user["email"]
         }
     }), 200
+
+@auth_bp.route('/error')
+def error():
+    return "Algo falló", 500
