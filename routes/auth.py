@@ -61,6 +61,22 @@ def login():
         }
     }), 200
 
+# Ruta para eliminar un usuario por su email (útil para pruebas)
+@auth_bp.route("/delete_user", methods=["DELETE"])
+def delete_user():
+    email = request.args.get("email")
+
+    if not email:
+        return jsonify({"msg": "Falta el parámetro 'email'"}), 400
+
+    result = users_collection.delete_one({"email": email})
+
+    if result.deleted_count == 0:
+        return jsonify({"msg": "No se encontró ningún usuario con ese correo"}), 404
+
+    return jsonify({"msg": f"Usuario con correo {email} eliminado"}), 200
+
+
 @auth_bp.route('/error')
 def error():
     return "Algo falló", 500
