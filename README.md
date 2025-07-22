@@ -19,7 +19,7 @@ Forma parte del desarrollo del curso **Ingeniería de Software 2 – 2025-1** ba
 ---
 
 ## ⚙️ Instalación y ejecución local
-
+```bash
 # Clona el repositorio
 git clone https://github.com/javiierbarco/auth-api-teleteach.git
 cd auth-api-teleteach
@@ -33,6 +33,8 @@ pip install -r requirements.txt
 
 # Ejecuta el servidor
 python app.py
+```
+La documentación en Swagger puede ser encontrada en: http://localhost:5000/docs
 
 📋 Endpoints principales 
 

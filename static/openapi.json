@@ -1,0 +1,107 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Auth API",
+    "version": "1.0.0",
+    "description": "API de autenticación de usuarios con MongoDB."
+  },
+  "paths": {
+    "/register": {
+      "post": {
+        "summary": "Registrar usuario",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["full_name", "email", "password"],
+                "properties": {
+                  "full_name": { "type": "string" },
+                  "email": { "type": "string", "format": "email" },
+                  "password": { "type": "string" }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Usuario registrado exitosamente"
+          },
+          "400": {
+            "description": "Error de validación o correo ya registrado"
+          }
+        }
+      }
+    },
+    "/login": {
+      "post": {
+        "summary": "Iniciar sesión",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["email", "password"],
+                "properties": {
+                  "email": { "type": "string", "format": "email" },
+                  "password": { "type": "string" }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Inicio de sesión exitoso"
+          },
+          "400": {
+            "description": "Faltan credenciales"
+          },
+          "401": {
+            "description": "Credenciales incorrectas"
+          }
+        }
+      }
+    },
+    "/delete_user": {
+      "delete": {
+        "summary": "Eliminar usuario por email",
+        "parameters": [
+          {
+            "name": "email",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "email"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Usuario eliminado"
+          },
+          "400": {
+            "description": "Falta parámetro 'email'"
+          },
+          "404": {
+            "description": "Usuario no encontrado"
+          }
+        }
+      }
+    },
+    "/error": {
+      "get": {
+        "summary": "Simular error",
+        "responses": {
+          "500": {
+            "description": "Algo falló"
+          }
+        }
+      }
+    }
+  }
+}
