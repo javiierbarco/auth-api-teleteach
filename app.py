@@ -57,6 +57,22 @@ CORS(app)
 #  Registra el blueprint que maneja las rutas de autenticación
 app.register_blueprint(auth_bp)
 
+from flask_swagger_ui import get_swaggerui_blueprint
+
+SWAGGER_URL = '/docs'  # URL donde estará disponible la documentación
+API_URL = '/static/openapi.json'  # Ruta relativa al archivo JSON
+
+swaggerui_blueprint = get_swaggerui_blueprint(
+    SWAGGER_URL,
+    API_URL,
+    config={  # Opcional: configuración extra
+        'app_name': "Auth API"
+    }
+)
+
+app.register_blueprint(swaggerui_blueprint, url_prefix=SWAGGER_URL)
+
+
 # Ejecuta la aplicación si se corre directamente con `python app.py`
 if __name__ == "__main__":
     app.run(debug=True, port=5000)  # El modo debug permite ver errores en tiempo real (no usar en producción)
