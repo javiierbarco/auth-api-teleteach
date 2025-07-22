@@ -4,3 +4,4 @@ pymongo            # Cliente oficial de MongoDB para Python
 python-dotenv      # Carga variables de entorno desde archivos .env
 werkzeug           # Utilidades de seguridad como hash de contraseñas
 flask-swagger-ui
+prometheus_client  #Métricas para prometheus 
